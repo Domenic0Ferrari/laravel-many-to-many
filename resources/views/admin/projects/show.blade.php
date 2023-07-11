@@ -2,10 +2,11 @@
 
 @section('contents')
     <h1 class="text-center mt-3">{{ $project->title }}</h1>
+    <h2 class="text-center">Type: {{ $project->type->name }}</h2>
+    <h3 class="text-center">Technologies: {{ implode(', ', $project->technologies->pluck('name')->all()) }}</h3>
     <h3 class="text-center mt-3">
         <a href="{{ $project->url_github}}">{{ $project->url_github}}</a>
     </h3>
-    <h2 class="text-center">Type: {{ $project->type->name }}</h2>
     <p class="mt-3">{{ $project->description }}</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quia excepturi eos sed facilis fuga ad dicta labore sint? Et quasi modi ullam quia harum consectetur repudiandae eius aliquid quisquam?
     Facilis veniam beatae natus corrupti numquam non ad, ipsam sunt! Repudiandae voluptas esse atque inventore doloremque alias velit repellendus labore aut error facilis ullam porro odio, soluta sapiente quia necessitatibus!
