@@ -47,7 +47,7 @@ class TypeController extends Controller
 
         $newType->save();
 
-        return to_route('admin.type.show', ['type' => $newType]);
+        return to_route('admin.types.show', ['type' => $newType]);
     }
 
     public function show(Type $type)
@@ -71,7 +71,7 @@ class TypeController extends Controller
 
         $type->update();
 
-        return to_route('admin.type.show', ['type' => $type]);
+        return to_route('admin.types.show', ['type' => $type]);
     }
 
     public function destroy(Type $type)

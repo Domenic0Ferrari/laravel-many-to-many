@@ -21,7 +21,7 @@
         <label for="description" class="form-label">Descrizione</label>
         <input type="text" 
         class="form-control @error('description') is-invalid @enderror" id="description" 
-        description="description" 
+        name="description" 
         value="{{old('description')}}">
         <div class="invalid-feedback">
             @error('description')

@@ -8,8 +8,10 @@
     @method('PUT')
     <div class="mb-3">
         <label for="name" class="form-label">Nome</label>
-        <input type="text" 
-        class="form-control @error('name') is-invalid @enderror" id="name" 
+        <input
+        type="text" 
+        class="form-control @error('name') is-invalid @enderror"
+        id="name" 
         name="name" 
         value="{{old('name', $type->name)}}">
         <div class="invalid-feedback">
@@ -20,9 +22,10 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Descrizione</label>
-        <input type="text" 
+        <input
+        type="text" 
         class="form-control @error('description') is-invalid @enderror" id="description" 
-        description="description" 
+        name="description" 
         value="{{old('description', $type->description)}}">
         <div class="invalid-feedback">
             @error('description')
