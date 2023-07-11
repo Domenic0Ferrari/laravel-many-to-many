@@ -32,6 +32,7 @@
                         </a>                   
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('admin.types.index') }}">Index</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.types.create') }}">Add</a></li>
                         </ul>
                     </li>
                 </li>

@@ -8,6 +8,22 @@ use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+    private $validations = [
+        'name' => 'required|string|min:5|max:30',
+        'description' => 'required|string|min:5|max:200',
+    ];
+
+    private $validation_messages = [
+        // name
+        'name.required' => 'Il campo name è obbligatorio',
+        'name.min' => 'Il campo name deve avere almeno :min caratteri',
+        'name.max' => 'Il campo name deve avere almeno :max caratteri',
+        // description
+        'description.required' => 'Il campo description è obbligatorio',
+        'description.min' => 'Il campo description deve avere almeno :min caratteri',
+        'description.max' => 'Il campo description deve avere almeno :max caratteri',
+    ];
+
     public function index()
     {
         $types = Type::all();
@@ -16,12 +32,22 @@ class TypeController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validations, $this->validation_messages);
+
+        $data = $request->all();
+
+        $newType = new Type();
+        $newType->name = $data['name'];
+        $newType->description = $data['description'];
+
+        $newType->save();
+
+        return to_route('admin.type.show', ['type' => $newType]);
     }
 
     public function show(Type $type)
@@ -31,16 +57,26 @@ class TypeController extends Controller
 
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     public function update(Request $request, Type $type)
     {
-        //
+        $request->validate($this->validations, $this->validation_messages);
+
+        $data = $request->all();
+
+        $type->name = $data['name'];
+        $type->description = $data['description'];
+
+        $type->update();
+
+        return to_route('admin.type.show', ['type' => $type]);
     }
 
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('admin.types.index')->with('delete_success', $type);
     }
 }
