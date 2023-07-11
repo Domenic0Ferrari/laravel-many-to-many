@@ -34,6 +34,26 @@
     </div>
 
     <div class="mb-3">
+        <h3>Tags</h3>
+        @foreach ($technologies as $technology)
+        <div class="form-check">
+            <input 
+            type="checkbox"
+            class="form-check-input"
+            id="technology{{ $technology->id }}"
+            name="technologies[]"
+            value="{{ $technology->id }}"
+            @if (in_array($technology->id, old('technologies', []))) checked @endif>
+            <label 
+            class="form-check-label"
+            for="technology{{ $technology->id }}">
+            {{ $technology->name }}
+            </label>
+        </div>
+        @endforeach
+    </div>
+
+    <div class="mb-3">
         <label for="author" class="form-label">Autore</label>
         <input type="text" 
         class="form-control @error('author') is-invalid @enderror" id="author" 

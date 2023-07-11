@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use App\Models\Type;
 
 class ProjectController extends Controller
@@ -46,7 +47,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     public function store(Request $request)
@@ -64,6 +66,8 @@ class ProjectController extends Controller
 
         $newProject->save();
 
+        $newProject->technologies()->sync($data['technologies'] ?? []);
+
         return to_route('admin.projects.show', ['project' => $newProject]);
     }
 
@@ -75,8 +79,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     public function update(Request $request, Project $project)
@@ -92,12 +96,18 @@ class ProjectController extends Controller
         $project->description = $data['description'];
         // aggiornare i dati
         $project->update();
+
+        $project->technologies()->sync($data['technologies'] ?? []);
+
         // reindirizza alla pagina show
         return to_route('admin.projects.show', ['project' => $project]);
     }
 
     public function destroy(Project $project)
     {
+        // dissocio i tag 
+        $project->technologies()->detach();
+
         $project->delete();
         return to_route('admin.projects.index')->with('delete_success', $project);
     }
