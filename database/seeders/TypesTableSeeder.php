@@ -15,7 +15,7 @@ class TypesTableSeeder extends Seeder
             $name = $type['name'];
             $slug = Type::slugger($name);
             $typeModel = Type::create([
-                'title' => $type['title'],
+                'name' => $type['name'],
                 'description' => $type['description'],
 
                 'slug' => $slug,

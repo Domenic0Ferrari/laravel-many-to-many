@@ -36,7 +36,7 @@
                 class="btn btn-danger js-delete"
                 data-bs-toggle="modal"
                 data-bs-target="#deleteModal"
-                data-id="{{ $type->id }}">
+                data-id="{{ $type->slug }}">
                     Delete
                 </button>
             </td>
