@@ -13,6 +13,8 @@ return new class extends Migration
 
             $table->string('name', 30);
             $table->string('description', 200);
+
+            $table->string('slug', 100)->unique();
             // $table->timestamps();
         });
     }

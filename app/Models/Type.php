@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Traits\Slugger;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Type extends Model
 {
@@ -12,15 +12,14 @@ class Type extends Model
     use Slugger;
     public $timestamps = false;
 
-    public function projects()
-    {
-        return $this->hasMany(Project::class);
-    }
-
     // richiamo la funzione scritta nello Slugger
-
     public function getRouteKey()
     {
         return $this->slug;
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }
