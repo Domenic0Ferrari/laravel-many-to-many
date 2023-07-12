@@ -17,6 +17,8 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            {{-- conteggio dei post associati --}}
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -25,6 +27,7 @@
         <tr>
             <th scope="row">{{ $type->id }}</th>
             <td>{{ $type->name }}</td>
+            <td>{{ $type->projects->count() }}</td>
             <td>
                 <a href="{{ route('admin.types.show', ['type' => $type]) }}" class="btn btn-primary">View</a>
                 <a href="{{ route('admin.types.edit', ['type' => $type]) }}" class="btn btn-warning">Edit</a>

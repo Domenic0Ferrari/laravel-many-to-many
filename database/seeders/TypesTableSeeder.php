@@ -12,6 +12,10 @@ class TypesTableSeeder extends Seeder
     {
         $types = [
             [
+                'name' => 'Uncategorized',
+                'description' => 'Lorem ipsum dolor'
+            ],
+            [
                 'name' => 'Front-end',
                 'description' => 'Lorem ipsum dolor'
             ],
