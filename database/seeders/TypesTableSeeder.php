@@ -11,8 +11,15 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
 
-        foreach ($types as $type) {
-            Type::create($type);
+        foreach (config('types') as $type) {
+            $name = $type['name'];
+            $slug = Type::slugger($name);
+            $typeModel = Type::create([
+                'title' => $type['title'],
+                'description' => $type['description'],
+
+                'slug' => $slug,
+            ]);
         }
     }
 }

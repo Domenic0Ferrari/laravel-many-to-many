@@ -44,24 +44,28 @@ class TypeController extends Controller
         $newType = new Type();
         $newType->name = $data['name'];
         $newType->description = $data['description'];
+        $newType->slug = Type::slugger($data['name']);
 
         $newType->save();
 
         return to_route('admin.types.show', ['type' => $newType]);
     }
 
-    public function show(Type $type)
+    public function show($slug)
     {
+        $type = Type::where('slug', $slug)->firstOrFail();
         return view('admin.types.show', compact('type'));
     }
 
-    public function edit(Type $type)
+    public function edit($slug)
     {
+        $type = Type::where('slug', $slug)->firstOrFail();
         return view('admin.types.edit', compact('type'));
     }
 
-    public function update(Request $request, Type $type)
+    public function update(Request $request, $slug)
     {
+        $type = Type::where('slug', $slug)->firstOrFail();
         $request->validate($this->validations, $this->validation_messages);
 
         $data = $request->all();
@@ -74,8 +78,9 @@ class TypeController extends Controller
         return to_route('admin.types.show', ['type' => $type]);
     }
 
-    public function destroy(Type $type)
+    public function destroy($slug)
     {
+        $type = Type::where('slug', $slug)->firstOrFail();
         // ciclo per far si che l'eliminazione funzioni
         foreach ($type->projects as $project) {
             $project->type_id = 1;

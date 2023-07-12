@@ -78,7 +78,7 @@ class TechnologyController extends Controller
         $technology = Technology::where('slug', $slug)->firstOrFail();
 
         // scollego le tecnologie associate
-        $technology->projects->detach();
+        $technology->projects()->detach();
 
         $technology->delete();
         return to_route('admin.technologies.index')->with('delete_success', $technology);
