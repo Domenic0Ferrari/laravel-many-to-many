@@ -32,7 +32,14 @@
             <td>
                 <a href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>
             </td>
-            <td>{{ implode(', ', $project->technologies->pluck('name')->all()) }}</td>
+            {{-- <td>{{ implode(', ', $project->technologies->pluck('name')->all()) }}</td> --}}
+            <td>
+                @foreach ($project->technologies as $technology)
+                    <a href="{{ route('admin.technologies.show', ['technology' => $technology]) }}">{{ $technology->name }}</a> {{ !$loop->last ? ',' : '' }}
+                    {{-- @if(!$loop->last),@endif --}}
+                    {{-- la variabile loop la crea laravel quando in blade facciamo un ciclo, per inserire le virgole e quando siamo nell'ultima per non inserirla --}}
+                @endforeach
+            </td>
             <td>{{ $project->author }}</td>
             <td><a href="{{ $project->url_github}}">{{ $project->url_github }}</a></td>
             <td>
