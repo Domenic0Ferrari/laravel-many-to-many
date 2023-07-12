@@ -3,21 +3,19 @@
 namespace Database\Seeders;
 
 use App\Models\Technology;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TechnologiesTableSeeder extends Seeder
 {
     public function run()
     {
-
-
         foreach (config('technologies') as $technology) {
             $name = $technology['name'];
             $slug = Technology::slugger($name);
 
-            $technology = Technology::create([
-                'name' => $technology,
+            $technologyModel = Technology::create([
+                'name' => $technology['name'],
                 'slug' => $slug
             ]);
         }

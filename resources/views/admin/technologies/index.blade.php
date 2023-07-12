@@ -25,7 +25,7 @@
         <tr>
             <th scope="row">{{ $technology->id }}</th>
             <td>{{ $technology->name }}</td>
-            {{-- <td>
+            <td>
                 <a href="{{ route('admin.technologies.show', ['technology' => $technology]) }}" class="btn btn-primary">View</a>
                 <a href="{{ route('admin.technologies.edit', ['technology' => $technology]) }}" class="btn btn-warning">Edit</a>
                 <button
@@ -33,16 +33,16 @@
                 class="btn btn-danger js-delete"
                 data-bs-toggle="modal"
                 data-bs-target="#deleteModal"
-                data-id="{{ $technology->id }}">
+                data-id="{{ $technology->slug }}">
                     Delete
                 </button>
-            </td> --}}
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>  
 
-{{-- <div
+<div
 class="modal fade"
 id="deleteModal"
 data-bs-backdrop="static"
@@ -62,10 +62,10 @@ aria-hidden="true">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 <form
-                action="{{ route('admin.types.destroy', ['type' => $type]) }}"
+                action="{{ route('admin.technologies.destroy', ['technology' => $technology]) }}"
                 method="POST"
                 class="d-inline-block" 
-                id="confirm-delete-3">
+                id="confirm-delete-4">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger">Delete</button>
@@ -73,5 +73,5 @@ aria-hidden="true">
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 @endsection

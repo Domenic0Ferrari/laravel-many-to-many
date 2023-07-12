@@ -13,15 +13,14 @@ class Technology extends Model
     use Slugger;
     public $timestamps = false;
 
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class);
-    }
-
     // richiamo la funzione scritta nello Slugger
-
     public function getRouteKey()
     {
         return $this->slug;
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
     }
 }

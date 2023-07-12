@@ -19,7 +19,6 @@ class ProjectController extends Controller
     ];
 
     private $validation_messages = [
-
         // title
         'title.required' => 'Il campo titolo è obbligatorio',
         'title.min' => 'Il campo titolo deve avere almeno :min caratteri',

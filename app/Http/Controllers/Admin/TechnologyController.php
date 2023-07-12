@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TechnologyController extends Controller
 {
@@ -13,7 +13,6 @@ class TechnologyController extends Controller
     ];
 
     private $validation_messages = [
-
         // name
         'name.required' => 'Il campo Nome è obbligatorio',
         'name.min' => 'Il campo Nome deve avere :min caratteri',
@@ -28,7 +27,7 @@ class TechnologyController extends Controller
 
     public function create()
     {
-        $technologies = Technology::all();
+        // $technologies = Technology::all();
         return view('admin.technologies.create');
     }
 
@@ -40,6 +39,7 @@ class TechnologyController extends Controller
 
         $newTechnology = new Technology();
         $newTechnology->name = $data['name'];
+        $newTechnology->slug = Technology::slugger($data['name']);
 
         $newTechnology->save();
 
@@ -55,6 +55,7 @@ class TechnologyController extends Controller
     public function edit($slug)
     {
         $technology = Technology::where('slug', $slug)->firstOrFail();
+
         return view('admin.technologies.edit', compact('technology'));
     }
 
