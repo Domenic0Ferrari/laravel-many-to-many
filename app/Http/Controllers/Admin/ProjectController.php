@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Type;
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Technology;
-use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -59,6 +59,7 @@ class ProjectController extends Controller
 
         $newProject = new Project();
         $newProject->title = $data['title'];
+        $newProject->slug = Project::slugger($data['title']);
         $newProject->type_id = $data['type_id'];
         $newProject->author = $data['author'];
         $newProject->url_github = $data['url_github'];
@@ -71,20 +72,25 @@ class ProjectController extends Controller
         return to_route('admin.projects.show', ['project' => $newProject]);
     }
 
-    public function show(Project $project)
+    public function show($slug)
     {
+        $project = Project::where('slug', $slug)->firstOrFail();
         return view('admin.projects.show', compact('project'));
     }
 
-    public function edit(Project $project)
+    public function edit($slug)
     {
+        $project = Project::where('slug', $slug)->firstOrFail();
+
         $types = Type::all();
         $technologies = Technology::all();
         return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $slug)
     {
+        $project = Project::where('slug', $slug)->firstOrFail();
+
         $request->validate($this->validations, $this->validation_messages);
 
         $data = $request->all();
@@ -103,8 +109,9 @@ class ProjectController extends Controller
         return to_route('admin.projects.show', ['project' => $project]);
     }
 
-    public function destroy(Project $project)
+    public function destroy($slug)
     {
+        $project = Project::where('slug', $slug)->firstOrFail();
         // dissocio le tecnologie associate 
         $project->technologies()->detach();
 

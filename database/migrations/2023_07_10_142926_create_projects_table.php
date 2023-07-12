@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             // start my-projects
             $table->string('title', 100);
+            // slug
+            $table->string('slug', 100)->unique();
+
             $table->string('author', 30);
             $table->string('url_github', 200);
             $table->text('description');

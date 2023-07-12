@@ -45,7 +45,12 @@
             <td>
                 <a href="{{ route('admin.projects.show', ['project' => $project]) }}" class="btn btn-primary">View</a>
                 <a href="{{ route('admin.projects.edit', ['project' => $project]) }}" class="btn btn-warning">Edit</a>
-                <button type="button" class="btn btn-danger js-delete-2" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $project->id }}">
+                <button
+                type="button"
+                class="btn btn-danger js-delete-2"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+                data-id="{{ $project->slug }}">
                     Delete
                 </button>
             </td>

@@ -19,8 +19,15 @@ class ProjectsTableSeeder extends Seeder
         // $technologies = Technology::all()->pluck('id');
 
         foreach (config('projects') as $objProject) {
+            // creare le variabili da utilizzare nel ::create
+            $title = $objProject['title'];
+            $slug = Project::slugger($title);
+
             $projectModel = Project::create([
                 'title' => $objProject['title'],
+                // slug
+                'slug' => $slug,
+                // slug
                 'author' => $objProject['author'],
                 'url_github' => $objProject['url_github'],
                 'description' => $objProject['description'],
