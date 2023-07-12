@@ -105,7 +105,7 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        // dissocio i tag 
+        // dissocio le tecnologie associate 
         $project->technologies()->detach();
 
         $project->delete();

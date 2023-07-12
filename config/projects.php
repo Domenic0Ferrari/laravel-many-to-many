@@ -176,6 +176,103 @@ return [
         ],
     ],
     [
+        'title' => 'Password Generator (JS)',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-pwdgen-wannabe',
+        'description' => 'Generatore di password realizzato con javascript (Altamente insicuro!).',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3'
+        ],
+    ],
+    [
+        'title' => 'Biglietto Treno',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-biglietto-treno',
+        'description' => 'Calcolo del prezzo di un biglietto di un ipoteetico treno.',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3'
+        ],
+    ],
+    [
+        'title' => 'Biglietto Treno Form',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-biglietto-treno-form',
+        'description' => 'Calcolo del prezzo di un biglietto di un ipoteetico treno attraverso un form.',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3'
+        ],
+    ],
+    [
+        'title' => 'Social Posts',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-social-posts',
+        'description' => 'Replica di alcuni post social, con la possibilità di aggiungere "mi piace".',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3',
+        ],
+    ],
+    [
+        'title' => 'JS FizzBuzz',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-fizzbuzz',
+        'description' => 'Giochino FizzBuzz realizzato con Javascript.',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3',
+        ],
+    ],
+    [
+        'title' => 'Campominato',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-campominato-grid',
+        'description' => 'Replica del gioco "campofiorito".',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3'
+        ],
+    ],
+    [
+        'title' => 'JS-Carousel',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/js-array-objects-carousel',
+        'description' => 'Realizzazione di un carosello interamente con Javascript.',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3'
+        ],
+    ],
+    [
+        'title' => 'Vue-Hello',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/vue-hello',
+        'description' => 'Primo esercizio realizzato con Vue.',
+        'type_id' => '1',
+        'technologies' => [
+            '1',
+            '2',
+            '3',
+            '4'
+        ],
+    ],
+    [
         'title' => 'Vue Slider',
         'author' => 'Domenico Ferrari',
         'url_github' => 'https://github.com/Domenic0Ferrari/vue-slider',
@@ -258,40 +355,50 @@ return [
         ],
     ],
     [
+        'title' => 'PHP-Badwords',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/php-badwords',
+        'description' => 'Primo esercizio in PHP.',
+        'type_id' => '2',
+        'technologies' => [
+            '1',
+            '7'
+        ],
+    ],
+    [
+        'title' => 'PHP-Hotel',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/php-hotel',
+        'description' => 'Esercizio con filtro per Hotel.',
+        'type_id' => '2',
+        'technologies' => [
+            '1',
+            '7'
+        ],
+    ],
+    [
+        'title' => 'PHP-Password-Generator',
+        'author' => 'Domenico Ferrari',
+        'url_github' => 'https://github.com/Domenic0Ferrari/php-strong-password-generator',
+        'description' => 'Generatore di password (più sicuro del precedente).',
+        'type_id' => '2',
+        'technologies' => [
+            '1',
+            '7'
+        ],
+    ],
+    [
         'title' => 'DC Comics',
         'author' => 'Domenico Ferrari',
         'url_github' => 'https://github.com/Domenic0Ferrari/laravel-comics',
         'description' => 'Replica del layout della homepage di DC Comics.',
-        'type_id' => '1',
+        'type_id' => '2',
         'technologies' => [
             '1',
             '2',
+            '6',
             '7',
             '8'
         ],
     ],
-    [
-        'title' => 'Social Posts',
-        'author' => 'Domenico Ferrari',
-        'url_github' => 'https://github.com/Domenic0Ferrari/js-social-posts',
-        'description' => 'Replica di alcuni post social, con la possibilità di aggiungere "mi piace".',
-        'type_id' => '1',
-        'technologies' => [
-            '1',
-            '2',
-            '3',
-        ],
-    ],
-    [
-        'title' => 'JS FizzBuzz',
-        'author' => 'Domenico Ferrari',
-        'url_github' => 'https://github.com/Domenic0Ferrari/js-fizzbuzz',
-        'description' => 'Giochino FizzBuzz realizzato con Javascript.',
-        'type_id' => '1',
-        'technologies' => [
-            '1',
-            '2',
-            '3',
-        ],
-    ]
 ];

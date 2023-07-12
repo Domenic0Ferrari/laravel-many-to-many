@@ -76,6 +76,7 @@ class TypeController extends Controller
 
     public function destroy(Type $type)
     {
+        // ciclo per far si che l'eliminazione funzioni
         foreach ($type->projects as $project) {
             $project->type_id = 1;
             $project->update();
