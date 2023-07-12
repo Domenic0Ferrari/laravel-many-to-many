@@ -5,10 +5,10 @@
 
 @if (session('delete_success'))
 @php
-    $project = session('delete_success')
+    $type = session('delete_success')
 @endphp
     <div class="alert alert-danger">
-        Il progetto "{{ $project->title }}" è stato eliminato per sempre!
+        Il tipo "{{ $type->name }}" è stato eliminato per sempre!
     </div>
 @endif
 
@@ -28,7 +28,12 @@
             <td>
                 <a href="{{ route('admin.types.show', ['type' => $type]) }}" class="btn btn-primary">View</a>
                 <a href="{{ route('admin.types.edit', ['type' => $type]) }}" class="btn btn-warning">Edit</a>
-                <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $type->id }}">
+                <button
+                type="button"
+                class="btn btn-danger js-delete"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+                data-id="{{ $type->id }}">
                     Delete
                 </button>
             </td>
