@@ -3,7 +3,7 @@
 @section('contents')
 
 <h1 class="text-center">Inserisci un nuovo Progetto</h1>
-<form method="POST" action="{{ route('admin.projects.store') }}" novalidate>
+<form method="POST" action="{{ route('admin.projects.store') }}" novalidate enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="title" class="form-label">Titolo</label>
@@ -13,6 +13,19 @@
         value="{{old('title')}}">
         <div class="invalid-feedback">
             @error('title')
+            {{ $message }}
+            @enderror
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <label for="image" class="input-group-text">Scegli un'immagine</label>
+        <input 
+        class="form-control @error('image') is-invalid @enderror" type="file"
+        id="image"
+        name="image">
+        <div class="invalid-feedback">
+            @error('image')
             {{ $message }}
             @enderror
         </div>
