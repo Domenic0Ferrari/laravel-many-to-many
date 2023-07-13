@@ -3,7 +3,7 @@
 @section('contents')
 
 <h1 class="text-center">Modifica il progetto:</h1>
-<form method="POST" action="{{ route('admin.projects.update', ['project' => $project]) }}" novalidate>
+<form method="POST" action="{{ route('admin.projects.update', ['project' => $project]) }}" novalidate enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -16,6 +16,19 @@
         {{-- passare il secondo argomento alla funzione old così che il campo esca già precompilato --}}
         <div class="invalid-feedback">
             @error('title')
+            {{ $message }}
+            @enderror
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <label for="image" class="input-group-text">Scegli un'immagine</label>
+        <input 
+        class="form-control @error('image') is-invalid @enderror" type="file"
+        id="image"
+        name="image">
+        <div class="invalid-feedback">
+            @error('image')
             {{ $message }}
             @enderror
         </div>

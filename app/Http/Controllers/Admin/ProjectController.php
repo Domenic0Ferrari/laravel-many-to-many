@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -15,6 +16,7 @@ class ProjectController extends Controller
         'type_id' => 'required|integer|exists:types,id',
         'author' => 'required|string|min:5|max:30',
         'url_github' => 'required|url|max:200',
+        'image' => 'nullable|image|max:2048',
         'description' => 'required|string',
     ];
 
@@ -33,6 +35,8 @@ class ProjectController extends Controller
         'url_github.required' => 'Il campo Github è obbligatorio',
         'url_github.url' => 'Il campo Github deve essere un url valido',
         'url_github.max' => 'Il campo Github deve avere massimo :max caratteri',
+        // image
+        'image.max' => 'Il campo Immagine non può superare 2mb',
         // description
         'description.required' => 'Il campo Descrizione è obbligatorio',
     ];
@@ -56,12 +60,15 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
+        $imagePath = Storage::put('uploads', $data['image']);
+
         $newProject = new Project();
         $newProject->title = $data['title'];
         $newProject->slug = Project::slugger($data['title']);
         $newProject->type_id = $data['type_id'];
         $newProject->author = $data['author'];
         $newProject->url_github = $data['url_github'];
+        $newProject->image = $imagePath;
         $newProject->description = $data['description'];
 
         $newProject->save();
@@ -93,6 +100,18 @@ class ProjectController extends Controller
         $request->validate($this->validations, $this->validation_messages);
 
         $data = $request->all();
+
+        if ($data['image']) {
+            // salvo la nuova eventuale immagine
+            $imagePath = Storage::put('uploads', $data['image']);
+            // elimino l'immagine vecchia se presente una nuova
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
+            // aggiorno i dati nel db con l'indirizzo dell'immagine nuova
+            $project->image = $imagePath;
+        }
+
         // aggiornare i dati nel database se validi
         $project->title = $data['title'];
         $project->type_id = $data['type_id'];
@@ -111,6 +130,11 @@ class ProjectController extends Controller
     public function destroy($slug)
     {
         $project = Project::where('slug', $slug)->firstOrFail();
+
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
+
         // dissocio le tecnologie associate 
         $project->technologies()->detach();
 
