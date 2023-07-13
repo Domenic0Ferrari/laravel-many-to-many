@@ -3,7 +3,11 @@
 @section('contents')
 
 <h1 class="text-center">Inserisci un nuovo Progetto</h1>
-<form method="POST" action="{{ route('admin.projects.store') }}" novalidate enctype="multipart/form-data">
+<form
+method="POST"
+action="{{ route('admin.projects.store') }}"
+enctype="multipart/form-data"
+novalidate>
     @csrf
     <div class="mb-3">
         <label for="title" class="form-label">Titolo</label>
@@ -23,7 +27,9 @@
         <input 
         class="form-control @error('image') is-invalid @enderror" type="file"
         id="image"
-        name="image">
+        name="image"
+        {{-- accept="image/* --}}
+        >
         <div class="invalid-feedback">
             @error('image')
             {{ $message }}
