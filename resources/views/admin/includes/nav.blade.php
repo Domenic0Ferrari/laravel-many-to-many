@@ -52,9 +52,9 @@
                         {{ $user->name }}
                     </a>
                     <ul class="dropdown-menu">
-                        {{-- <li>
+                        <li>
                             <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Edit Profile</a>
-                        </li> --}}
+                        </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
