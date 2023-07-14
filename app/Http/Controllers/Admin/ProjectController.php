@@ -60,7 +60,7 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
-        $imagePath = Storage::put('uploads', $data['image']);
+        $imagePath = Storage::put('uploads', $request->has('image'));
 
         $newProject = new Project();
         $newProject->title = $data['title'];
@@ -101,7 +101,7 @@ class ProjectController extends Controller
 
         $data = $request->all();
 
-        if ($data['image']) {
+        if ($request->has('image')) {
             // salvo la nuova eventuale immagine
             $imagePath = Storage::put('uploads', $data['image']);
             // elimino l'immagine vecchia se presente una nuova
